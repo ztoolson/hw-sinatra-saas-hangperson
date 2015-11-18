@@ -21,4 +21,30 @@ class HangpersonGame
     uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
     Net::HTTP.post_form(uri ,{}).body
   end
+
+  def guess(letter)
+    fail ArgumentError if letter.nil? || !valid_guess?(letter)
+
+    letter = letter.downcase
+    return false if already_guessed?(letter)
+
+    if word.include?(letter)
+      guesses << letter
+    else
+      wrong_guesses << letter
+    end
+
+    true
+  end
+
+  private
+
+  def already_guessed?(letter)
+    (guesses + wrong_guesses).include?(letter)
+  end
+
+  def valid_guess?(letter)
+    letter =~ /^[a-z]$/i
+  end
+
 end
