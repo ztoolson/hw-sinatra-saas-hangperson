@@ -24,8 +24,8 @@ class HangpersonGame
 
   def guess(letter)
     fail ArgumentError if letter.nil? || !valid_guess?(letter)
-
     letter = letter.downcase
+
     return false if already_guessed?(letter)
 
     if word.include?(letter)
@@ -35,6 +35,16 @@ class HangpersonGame
     end
 
     true
+  end
+
+  def word_with_guesses
+    formatted_word = ''
+
+    word.split('').each do |letter|
+      formatted_word << (guesses.include?(letter) ? letter : '-')
+    end
+
+    formatted_word
   end
 
   private
