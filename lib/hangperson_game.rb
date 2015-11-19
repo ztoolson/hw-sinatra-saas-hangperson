@@ -37,6 +37,12 @@ class HangpersonGame
     true
   end
 
+  def check_win_or_lose
+    return :lose if wrong_guesses.length >= 7
+    return :win if guesses.length == word.length
+    :play
+  end
+
   def word_with_guesses
     formatted_word = ''
 
