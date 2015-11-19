@@ -6,9 +6,6 @@ class HangpersonGame
 
   # Get a word from remote "random word" service
 
-  # def initialize()
-  # end
-
   def initialize(word)
     @word = word
     @guesses = ''
